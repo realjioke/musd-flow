@@ -40,6 +40,8 @@ function AddressQr() {
     return <Card className="mt-4 p-10 text-center text-sm text-[var(--ink-soft)]">Connect a wallet.</Card>;
   }
 
+  const addrUrl = net ? addrExplorerUrl(net, address) : null;
+
   return (
     <Card className="mt-4 flex flex-col items-center gap-4 p-8">
       <Badge tone={net?.testnet ? "warn" : "gold"}>{net?.label ?? "Unknown network"}</Badge>
@@ -48,8 +50,8 @@ function AddressQr() {
         <span className="truncate font-mono text-xs">{address}</span>
         <CopyButton value={address} label="Copy" />
       </div>
-      {net ? (
-        <a href={addrExplorerUrl(net, address) ?? "#"} target="_blank" rel="noopener noreferrer" className="text-xs text-[var(--gold)]">
+      {addrUrl ? (
+        <a href={addrUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-[var(--gold)]">
           View on explorer ↗
         </a>
       ) : null}

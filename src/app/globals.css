@@ -44,6 +44,16 @@ body {
   color: var(--ink);
 }
 
+/* Smooth, navbar-offset-aware anchor scrolling for in-page nav */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+html {
+  scroll-padding-top: 0.5rem; /* sections carry their own scroll-mt-* for the fixed navbar */
+}
+
 * {
   border-color: var(--line);
 }

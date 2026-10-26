@@ -74,6 +74,7 @@ export default function CircleDetailPage() {
   const isCreator = !!address && address.toLowerCase() === circle.creator.toLowerCase();
   const hasContrib = data.contributions.length > 0;
   const net = networkFor(circle.chainId);
+  const addrUrl = net ? addrExplorerUrl(net, circle.payoutAddress) : null;
   const contributed = data.contributions.reduce((sum, c) => sum + Number(c.amount), 0);
   const target = Number(circle.targetAmount);
   const pct = target > 0 ? Math.min(100, Math.round((contributed / target) * 100)) : 0;
@@ -153,9 +154,9 @@ export default function CircleDetailPage() {
           <span className="truncate font-mono text-xs">{circle.payoutAddress}</span>
           <CopyButton value={circle.payoutAddress} label="Copy address" />
         </div>
-        {net?.explorer ? (
+        {net && addrUrl ? (
           <a
-            href={addrExplorerUrl(net, circle.payoutAddress) ?? "#"}
+            href={addrUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-2 inline-block text-xs text-[var(--gold)]"
