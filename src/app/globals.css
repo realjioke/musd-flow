@@ -1,0 +1,385 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-bg: var(--gold-bg);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-warn: var(--warn);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+:root {
+  --bg: #0b0b09;
+  --surface: #121210;
+  --surface-2: #1a1a16;
+  --line: #262620;
+  --line-strong: #3a3a30;
+  --ink: #f4f1e6;
+  --ink-soft: #b3b1a2;
+  --ink-faint: #7a7867;
+  --gold: #d9b45b;
+  --gold-soft: #efd9a1;
+  --gold-bg: rgba(217, 180, 91, 0.08);
+  --success: #58b98b;
+  --danger: #d4705f;
+  --warn: #d9a05b;
+  /* Deliberate content width for a premium, spacious desktop rhythm */
+  --content-w: 76rem; /* 1216px */
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+* {
+  border-color: var(--line);
+}
+
+::selection {
+  background: rgba(217, 180, 91, 0.25);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ------------------------------------------------------------------ */
+/* Layout                                                              */
+/* ------------------------------------------------------------------ */
+
+.mf-container {
+  width: 100%;
+  max-width: var(--content-w);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 640px) {
+  .mf-container {
+    padding-inline: 2rem;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Typography                                                          */
+/* ------------------------------------------------------------------ */
+
+/* Primary headline — the dominant element at every breakpoint */
+.mf-h1 {
+  font-size: clamp(2.4rem, 1.5rem + 4.2vw, 4.05rem);
+  font-weight: 650;
+  letter-spacing: -0.022em;
+  line-height: 1.06;
+}
+
+.mf-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.mf-h2 {
+  font-size: clamp(1.65rem, 1.25rem + 1.6vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.mf-lead {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+@media (min-width: 640px) {
+  .mf-lead {
+    font-size: 1.125rem;
+  }
+}
+
+.mf-meta {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------------ */
+/* Surfaces — tiered card system                                       */
+/* ------------------------------------------------------------------ */
+
+.mf-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  transition: border-color 160ms ease, background-color 160ms ease,
+    transform 160ms ease, box-shadow 160ms ease;
+}
+
+.mf-card-hover:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -18px rgba(0, 0, 0, 0.8);
+}
+
+/* Technical card: flat, data-dense, for network/contract facts */
+.mf-card-tech {
+  background: color-mix(in srgb, var(--surface) 82%, var(--surface-2));
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.mf-kv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 1.8rem;
+  font-size: 0.875rem;
+}
+.mf-kv > span:first-child {
+  color: var(--ink-soft);
+  flex-shrink: 0;
+}
+.mf-kv > span:last-child,
+.mf-kv > .mf-kv-right {
+  color: var(--ink);
+  min-width: 0;
+  text-align: right;
+}
+
+.mf-mono {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: -0.01em;
+}
+
+/* ------------------------------------------------------------------ */
+/* Inputs / labels (unchanged names, slightly roomier)                 */
+/* ------------------------------------------------------------------ */
+
+.mf-input {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.688rem 0.875rem;
+  font-size: 0.9375rem;
+  color: var(--ink);
+  transition: border-color 120ms ease;
+}
+.mf-input::placeholder {
+  color: var(--ink-faint);
+}
+.mf-input:focus {
+  border-color: var(--gold);
+  outline: none;
+}
+.mf-input[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.mf-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.375rem;
+}
+
+.mf-skeleton {
+  background: linear-gradient(
+    100deg,
+    var(--surface-2) 30%,
+    var(--line) 50%,
+    var(--surface-2) 70%
+  );
+  background-size: 200% 100%;
+  animation: mf-shimmer 1.4s ease infinite;
+  border-radius: 8px;
+}
+@keyframes mf-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.mf-gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.35;
+}
+
+/* ------------------------------------------------------------------ */
+/* Infrastructure flow visualization (hero)                            */
+/* ------------------------------------------------------------------ */
+
+.mf-flow-node {
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 0.5rem 0.875rem;
+}
+
+/* Modal/sheet entrance: quick, restrained */
+.mf-sheet {
+  animation: mf-sheet-in 200ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
+  border-radius: 14px 14px 0 0;
+}
+@media (min-width: 640px) {
+  .mf-sheet {
+    border-radius: 14px;
+  }
+}
+@keyframes mf-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mf-sheet {
+    animation: none;
+  }
+}
+
+.mf-flow-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* Vertical connector with a travelling pulse that signals system activity */
+.mf-flow-line {
+  position: relative;
+  width: 1px;
+  min-height: 1.75rem;
+  background: var(--line-strong);
+  overflow: visible;
+}
+.mf-flow-line::after {
+  content: "";
+  position: absolute;
+  left: -1.5px;
+  top: 0;
+  width: 3px;
+  height: 0.875rem;
+  border-radius: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--gold-soft),
+    transparent
+  );
+  animation: mf-pulse-travel 2.6s linear infinite;
+}
+.mf-flow-line.mf-flow-line-slow::after {
+  animation-duration: 3.8s;
+  animation-delay: 1.2s;
+}
+@keyframes mf-pulse-travel {
+  0% {
+    top: -14px;
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.9;
+  }
+  88% {
+    opacity: 0.9;
+  }
+  100% {
+    top: calc(100% + 2px);
+    opacity: 0;
+  }
+}
+
+/* Live status dot: a calm one-pulse ring, not a strobe */
+.mf-dot-live {
+  position: relative;
+}
+.mf-dot-live::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  border: 1px solid currentColor;
+  opacity: 0.35;
+  animation: mf-dot-ring 2.8s ease-out infinite;
+}
+@keyframes mf-dot-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  70%,
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+/* Gentle section entrance: short distance, no bounce */
+.mf-enter {
+  animation: mf-enter 420ms ease both;
+}
+@keyframes mf-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mf-flow-line::after,
+  .mf-dot-live::after,
+  .mf-enter {
+    animation: none !important;
+  }
+  .mf-flow-line::after {
+    content: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    transition-duration: 0.001s !important;
+  }
+}

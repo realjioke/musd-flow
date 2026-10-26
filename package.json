@@ -1,0 +1,38 @@
+{
+  "name": "musd-flow",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "node tests/run-tests.mjs"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.104.5",
+    "drizzle-orm": "^0.45.4",
+    "geist": "^1.8.2",
+    "nanoid": "^6.0.2",
+    "next": "16.4.3",
+    "qrcode": "^1.5.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "viem": "^2.57.11",
+    "wagmi": "^3.7.9",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@opennextjs/cloudflare": "1.20.12",
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^20",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.3",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "wrangler": "4.148.0"
+  }
+}
